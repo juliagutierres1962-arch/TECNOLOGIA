@@ -1,0 +1,371 @@
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 15px 5px;
+    background: #08051b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.fantasma{
+    
+   
+
+    height: 250px;
+   
+}
+.pagina {
+    width: 100%;
+    max-width: 402px;
+    min-height: 874px;
+    margin: auto;
+    padding: 15px;
+    overflow: hidden;
+    border: 2px solid #713bff;
+    border-radius: 8px;
+    background-color: #080616;
+    background-image:
+        linear-gradient(rgba(5, 3, 25, 0.25), rgba(5, 3, 25, 0.35)),
+        url("./IMG/fundo.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 25px #592aff;
+}
+
+.voltar {
+    display: block;
+    margin-bottom: 18px;
+    color: #9cdeff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.voltar:hover {
+    color: white;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 180px;
+    min-height: 115px;
+    padding: 15px 5px;
+    border: 2px solid #6934ff;
+    border-radius: 50%;
+    background: rgba(7, 4, 32, 0.85);
+    box-shadow: 0 0 18px #5828ff;
+    transform: rotate(-2deg);
+}
+
+.logo h1 {
+    color: #b38bff;
+    font-size: 27px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #693bff;
+}
+
+.logo h2 {
+    color: #83dfff;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+.logo p {
+    margin-top: 5px;
+    color: white;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.titulo {
+    color: #b8a0ff;
+    font-size: 21px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #6030ff;
+}
+
+.subtitulo {
+    margin-top: -8px;
+    color: #b9dfff;
+    font-size: 11px;
+}
+
+.seletor-fundo input {
+    display: none;
+}
+
+.seletor-fundo label {
+    display: block;
+    margin-bottom: 18px;
+    padding: 12px 8px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #783bff, #168dff);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(94, 52, 255, 0.5);
+}
+
+.seletor-fundo label:hover {
+    filter: brightness(1.2);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.caixa {
+    padding: 15px 12px;
+    border: 1px solid #50328c;
+    border-radius: 6px;
+    background: rgba(5, 5, 18, 0.93);
+    box-shadow: 0 0 12px rgba(81, 40, 255, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+.caixa h3 {
+    margin-bottom: 10px;
+    color: #d6caff;
+    font-size: 14px;
+}
+
+.descricao {
+    margin-bottom: 12px;
+    color: #c7c1df;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.produto {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #332454;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.produto span {
+    flex: 1;
+    overflow-wrap: anywhere;
+}
+
+.produto strong {
+    color: #a9e4ff;
+    white-space: nowrap;
+    font-size: 10px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #45317a;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.total strong {
+    color: #92dfff;
+    white-space: nowrap;
+}
+
+#carrinho-vazio {
+    margin-top: 12px;
+    color: #c9baff;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.metodos {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 15px 0 20px;
+}
+
+.metodos label {
+    display: block;
+    cursor: pointer;
+}
+
+.metodos input {
+    position: absolute;
+    opacity: 0;
+}
+
+.metodos span {
+    display: block;
+    padding: 12px 5px;
+    border: 1px solid #34215e;
+    border-radius: 5px;
+    background: #03030a;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+.metodos input:checked + span {
+    border-color: #7947ff;
+    box-shadow: 0 0 9px rgba(106, 54, 255, 0.55);
+}
+
+.metodos span:hover {
+    border-color: #628dff;
+}
+
+#dadosCartao h3 {
+    margin: 12px 0;
+    color: #a9dfff;
+}
+
+#dadosCartao label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #d7d2e9;
+    font-size: 9px;
+}
+
+#dadosCartao input {
+    width: 100%;
+    min-width: 0;
+    height: 31px;
+    padding: 7px;
+    border: 1px solid #32234f;
+    border-radius: 4px;
+    outline: none;
+    background: #05050e;
+    color: white;
+    font-size: 10px;
+}
+
+#dadosCartao input:focus {
+    border-color: #784bff;
+    box-shadow: 0 0 7px #542aff;
+}
+
+#dadosCartao input::placeholder {
+    color: #777487;
+}
+
+.linha {
+    display: flex;
+    gap: 9px;
+}
+
+.campo {
+    flex: 1;
+    min-width: 0;
+}
+
+#mensagem {
+    margin-top: 12px;
+    color: #91dfff;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+#pagar {
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px 8px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(100deg, #843dff, #456aff, #168dff);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#pagar:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 12px #613bff;
+}
+
+#pagar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.links a {
+    display: block;
+    padding: 11px;
+    border: 1px solid #50358d;
+    border-radius: 5px;
+    background: rgba(8, 5, 35, 0.9);
+    color: #c8bdff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.links a:hover {
+    background: #30206c;
+}
+
+footer {
+    padding: 22px 0 5px;
+    color: #c3b5ff;
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+footer p {
+    color: #9c96c1;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 350px) {
+    .pagina {
+        padding: 10px;
+    }
+
+    .caixa {
+        padding: 12px 9px;
+    }
+
+    .produto {
+        font-size: 9px;
+    }
+
+    .metodos span {
+        font-size: 12px;
+    }
+}

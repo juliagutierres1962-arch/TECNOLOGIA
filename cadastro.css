@@ -1,0 +1,194 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #08051b;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.fantasma{
+    
+   
+
+    height: 200px;
+   
+}
+.celular {
+    width: 100%;
+    max-width: 390px;
+    min-height: 780px;
+    border: 3px solid #642cff;
+    border-radius: 35px;
+    overflow: hidden;
+    color: white;
+
+    background-image:
+        linear-gradient(rgba(8,4,35,0.65), rgba(12,10,55,0.75)),
+        url("./img/fundo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-shadow: 0 0 25px #5525ff80;
+}
+
+header {
+    text-align: center;
+    padding: 25px 10px;
+    background: rgba(16,8,45,0.75);
+    border-bottom: 1px solid #5128ce;
+}
+
+header h1 {
+    color: #bba5ff;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px #753cff;
+}
+
+header p {
+    margin-top: 8px;
+    color: #d5d0ff;
+    font-size: 13px;
+}
+
+main {
+    padding: 22px;
+}
+
+main h2 {
+    text-align: center;
+    color: #bca6ff;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.texto {
+    text-align: center;
+    font-size: 13px;
+    color: #dedaff;
+    margin-bottom: 20px;
+}
+
+.escolher-fundo {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.escolher-fundo label {
+    display: inline-block;
+    background: linear-gradient(100deg, #702aff, #176bff);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #a18aff;
+}
+
+#imagem {
+    display: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 13px;
+    margin-bottom: 7px;
+    color: #d4caff;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #6446c9;
+    border-radius: 10px;
+    outline: none;
+    background: rgba(16,11,50,0.92);
+    color: white;
+    font-size: 14px;
+}
+
+form input::placeholder {
+    color: #aaa1d1;
+}
+
+form input:focus {
+    border-color: #3288ff;
+    box-shadow: 0 0 10px #4a55ff80;
+}
+
+button {
+    padding: 14px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(100deg, #702aff, #176bff);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 12px #5825ff70;
+}
+
+button:hover {
+    background: linear-gradient(100deg, #8e50ff, #3691ff);
+}
+
+.login {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #dedaff;
+}
+
+.login a,
+.voltar {
+    color: #9dbbff;
+    text-decoration: none;
+}
+
+.voltar {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 17px 10px;
+    font-size: 11px;
+    color: #cfc5ff;
+    background: rgba(16,8,45,0.85);
+    border-top: 1px solid #5128ce;
+}
+
+@media (max-width: 420px) {
+    body {
+        padding: 8px;
+    }
+
+    .celular {
+        min-height: 95vh;
+        border-radius: 28px;
+    }
+
+    main {
+        padding: 20px 18px;
+    }
+}

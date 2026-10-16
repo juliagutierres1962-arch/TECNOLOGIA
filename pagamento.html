@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - JULIA TECH</title>
+    <link rel="stylesheet" href="pagamento.css">
+</head>
+<body>
+
+<div class="pagina" id="pagina">
+<div class="fantasma">
+         
+        </div>
+
+    <a href="index.html" class="voltar">← Voltar para a loja</a>
+
+    
+
+        <h2 class="titulo">PAGAMENTO</h2>
+    
+    </header>
+
+    
+    <main>
+        <section class="caixa">
+            <h3>Resumo da compra</h3>
+            <p class="descricao">Seus produtos e acessórios selecionados.</p>
+
+            <div id="lista-carrinho"></div>
+
+            <div class="total">
+                <span>TOTAL DA COMPRA</span>
+                <strong id="valor-total">R$ 0,00</strong>
+            </div>
+
+            <p id="carrinho-vazio" hidden>
+                Seu carrinho está vazio. Volte à loja e adicione produtos.
+            </p>
+        </section>
+
+        <section class="caixa">
+            <h3>Método de pagamento</h3>
+
+            <div class="metodos">
+                <label>
+                    <input type="radio" name="metodo" value="Cartão de crédito" checked>
+                    <span>Cartão de crédito</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="metodo" value="Boleto bancário">
+                    <span>Boleto bancário</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="metodo" value="Pix">
+                    <span>Pix</span>
+                </label>
+            </div>
+
+            <form id="formPagamento">
+                <div id="dadosCartao">
+                    <h3>Dados do cartão</h3>
+
+                    <label for="numero">Número do cartão</label>
+                    <input type="text" id="numero"
+                           placeholder="0000 0000 0000 0000"
+                           maxlength="19" autocomplete="cc-number">
+
+                    <div class="linha">
+                        <div class="campo">
+                            <label for="nome">Nome no cartão</label>
+                            <input type="text" id="nome"
+                                   placeholder="Nome impresso"
+                                   autocomplete="cc-name">
+                        </div>
+
+                        <div class="campo">
+                            <label for="validade">Validade</label>
+                            <input type="text" id="validade"
+                                   placeholder="MM/AA" maxlength="5"
+                                   autocomplete="cc-exp">
+                        </div>
+                    </div>
+
+                    <label for="cvv">CVV</label>
+                    <input type="password" id="cvv"
+                           placeholder="Código de segurança"
+                           maxlength="4" autocomplete="cc-csc">
+                </div>
+
+                <p id="mensagem" role="status"></p>
+
+                <button type="submit" id="pagar">
+                    PAGAR AGORA
+                </button>
+            </form>
+        </section>
+
+        <nav class="links">
+            <a href="produtos.html">Ver produtos</a>
+            <a href="acessorios.html">Ver acessórios</a>
+        </nav>
+    </main>
+
+    <footer>
+        JULIA GUTIERRES © 2026
+        <p>Inovação para o seu dia a dia</p>
+    </footer>
+</div>
+
+<script>
+    // Escolher uma imagem de fundo do computador
+    document.getElementById("imagemFundo").addEventListener("change", function() {
+        const arquivo = this.files[0];
+
+        if (arquivo && arquivo.type.startsWith("image/")) {
+            const leitor = new FileReader();
+
+            leitor.onload = function(evento) {
+                document.getElementById("pagina").style.backgroundImage =
+                    "linear-gradient(rgba(5,3,25,0.25), rgba(5,3,25,0.35)), url('" +
+                    evento.target.result + "')";
+            };
+
+            leitor.readAsDataURL(arquivo);
+        }
+    });
+
+    // Carrega o carrinho compartilhado com produtos e acessórios
+    function lerCarrinho() {
+        try {
+            const dados = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+            if (!Array.isArray(dados)) return [];
+
+            return dados.map(function(item) {
+                return {
+                    nome: String(item.nome || "Produto"),
+                    preco: Math.max(0, Number(item.preco) || 0),
+                    quantidade: Math.max(1, Math.floor(Number(item.quantidade) || 1))
+                };
+            });
+        } catch (erro) {
+            return [];
+        }
+    }
+
+    function dinheiro(valor) {
+        return valor.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+    }
+
+    function atualizarCarrinho() {
+        const carrinho = lerCarrinho();
+        const lista = document.getElementById("lista-carrinho");
+        const totalElemento = document.getElementById("valor-total");
+        const vazio = document.getElementById("carrinho-vazio");
+
+        lista.replaceChildren();
+        let total = 0;
+
+        carrinho.forEach(function(item) {
+            const subtotal = item.preco * item.quantidade;
+            total += subtotal;
+
+            const linha = document.createElement("div");
+            linha.className = "produto";
+
+            const nome = document.createElement("span");
+            nome.textContent = item.nome + " x" + item.quantidade;
+
+            const preco = document.createElement("strong");
+            preco.textContent = dinheiro(subtotal);
+
+            linha.append(nome, preco);
+            lista.appendChild(linha);
+        });
+
+        totalElemento.textContent = dinheiro(total);
+        vazio.hidden = carrinho.length > 0;
+        document.getElementById("pagar").disabled = carrinho.length === 0;
+
+        return { carrinho: carrinho, total: total };
+    }
+
+    // Mostrar os campos de cartão apenas quando necessário
+    document.querySelectorAll('input[name="metodo"]').forEach(function(opcao) {
+        opcao.addEventListener("change", function() {
+            document.getElementById("dadosCartao").hidden =
+                this.value !== "Cartão de crédito";
+
+            document.getElementById("mensagem").textContent = "";
+        });
+    });
+
+    // Formatar número do cartão
+    document.getElementById("numero").addEventListener("input", function() {
+        let numero = this.value.replace(/\D/g, "").slice(0, 16);
+        this.value = numero.replace(/(\d{4})(?=\d)/g, "$1 ");
+    });
+
+    // Formatar validade
+    document.getElementById("validade").addEventListener("input", function() {
+        let valor = this.value.replace(/\D/g, "").slice(0, 4);
+
+        if (valor.length > 2) {
+            valor = valor.slice(0, 2) + "/" + valor.slice(2);
+        }
+
+        this.value = valor;
+    });
+
+    // Demonstração de finalização: não realiza cobrança real
+    document.getElementById("formPagamento").addEventListener("submit", function(evento) {
+        evento.preventDefault();
+
+        const resultado = atualizarCarrinho();
+        const mensagem = document.getElementById("mensagem");
+        const metodo = document.querySelector('input[name="metodo"]:checked').value;
+
+        if (resultado.carrinho.length === 0) {
+            mensagem.textContent = "Adicione produtos ao carrinho antes de continuar.";
+            return;
+        }
+
+        if (metodo === "Cartão de crédito") {
+            const numero = document.getElementById("numero").value.replace(/\D/g, "");
+            const nome = document.getElementById("nome").value.trim();
+            const validade = document.getElementById("validade").value;
+            const cvv = document.getElementById("cvv").value;
+
+            if (numero.length < 13 || nome === "" ||
+                !/^(0[1-9]|1[0-2])\/\d{2}$/.test(validade) ||
+                !/^\d{3,4}$/.test(cvv)) {
+                mensagem.textContent = "Confira os dados preenchidos do cartão.";
+                return;
+            }
+        }
+
+        mensagem.textContent = "Demonstração concluída! Método: " + metodo +
+            ". Total do pedido: " + dinheiro(resultado.total) +
+            ". Nenhuma cobrança foi realizada.";
+    });
+
+    // Atualizar quando o carrinho for alterado em outra aba
+    window.addEventListener("storage", atualizarCarrinho);
+
+    atualizarCarrinho();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessórios - JULIA TECH</title>
+    <link rel="stylesheet" href="acessorios.css">
+</head>
+<body>
+
+<div class="celular">
+    
+ <div class="fantasma">
+         
+        </div>
+
+    <a href="index.html" class="voltar">← Voltar ao início</a>
+
+    
+    <div class="topo">
+        <h2>ACESSÓRIOS</h2>
+        <p>DETALHES QUE FAZEM A DIFERENÇA</p>
+    </div>
+
+    
+    <main>
+        <h3>Nossos acessórios:</h3>
+
+        <div class="produto">
+            <div>
+                <h4>CAPA PARA CELULAR</h4>
+                <p>Proteção e estilo para o seu smartphone.</p>
+            </div>
+            <strong>R$ 39,90</strong>
+            <button onclick="adicionar('Capa para celular', 39.90)">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto">
+            <div>
+                <h4>PELÍCULA DE VIDRO</h4>
+                <p>Proteção para a tela contra riscos e pequenos impactos.</p>
+            </div>
+            <strong>R$ 25,00</strong>
+            <button onclick="adicionar('Película de vidro', 25)">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto">
+            <div>
+                <h4>CARREGADOR USB-C</h4>
+                <p>Carregamento prático para dispositivos compatíveis.</p>
+            </div>
+            <strong>R$ 59,90</strong>
+            <button onclick="adicionar('Carregador USB-C', 59.90)">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto">
+            <div>
+                <h4>CABO USB-C</h4>
+                <p>Cabo para carregar e conectar seus dispositivos.</p>
+            </div>
+            <strong>R$ 29,90</strong>
+            <button onclick="adicionar('Cabo USB-C', 29.90)">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto">
+            <div>
+                <h4>SUPORTE PARA CELULAR</h4>
+                <p>Ideal para assistir vídeos e fazer chamadas.</p>
+            </div>
+            <strong>R$ 35,00</strong>
+            <button onclick="adicionar('Suporte para celular', 35)">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto">
+            <div>
+                <h4>POWER BANK 10.000 MAH</h4>
+                <p>Bateria portátil para carregar o celular em qualquer lugar.</p>
+            </div>
+            <strong>R$ 119,90</strong>
+            <button onclick="adicionar('Power bank 10000 mAh', 119.90)">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto">
+            <div>
+                <h4>HUB USB 4 PORTAS</h4>
+                <p>Conecte vários dispositivos ao computador.</p>
+            </div>
+            <strong>R$ 49,90</strong>
+            <button onclick="adicionar('Hub USB 4 portas', 49.90)">Adicionar ao carrinho</button>
+        </div>
+
+        <div class="produto">
+            <div>
+                <h4>APOIO PARA NOTEBOOK</h4>
+                <p>Ajuda a posicionar o notebook durante o uso.</p>
+            </div>
+            <strong>R$ 69,90</strong>
+            <button onclick="adicionar('Apoio para notebook', 69.90)">Adicionar ao carrinho</button>
+        </div>
+
+        <section class="carrinho" id="carrinho">
+            <h3>MEU CARRINHO</h3>
+            <p id="vazio">Seu carrinho está vazio.</p>
+
+            <div id="lista"></div>
+
+            <div class="total">
+                <p>Quantidade: <span id="quantidade">0</span></p>
+                <h3>Total: <span id="valor">R$ 0,00</span></h3>
+            </div>
+
+            <button class="finalizar" id="finalizar" onclick="irPagamento()">
+                IR PARA O PAGAMENTO
+            </button>
+
+            <button class="limpar" onclick="limparCarrinho()">
+                Limpar carrinho
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        JULIA GUTIERRES © 2026
+    </footer>
+
+</div>
+
+<script>
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    function salvar() {
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        mostrarCarrinho();
+    }
+
+    function adicionar(nome, preco) {
+        let item = carrinho.find(p => p.nome === nome);
+
+        if (item) {
+            item.quantidade = (item.quantidade || 1) + 1;
+        } else {
+            carrinho.push({
+                nome: nome,
+                preco: preco,
+                quantidade: 1
+            });
+        }
+
+        salvar();
+
+        document.getElementById("carrinho").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+    function mostrarCarrinho() {
+        const lista = document.getElementById("lista");
+        lista.innerHTML = "";
+
+        let total = 0;
+        let quantidade = 0;
+
+        document.getElementById("vazio").style.display =
+            carrinho.length === 0 ? "block" : "none";
+
+        carrinho.forEach((item, i) => {
+            item.quantidade = item.quantidade || 1;
+
+            total += item.preco * item.quantidade;
+            quantidade += item.quantidade;
+
+            const linha = document.createElement("div");
+            linha.className = "item";
+
+            const nome = document.createElement("p");
+            nome.textContent = item.nome;
+
+            const preco = document.createElement("strong");
+            preco.textContent = (item.preco * item.quantidade)
+                .toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+
+            const controles = document.createElement("div");
+            controles.className = "controles";
+
+            const menos = document.createElement("button");
+            menos.textContent = "−";
+            menos.onclick = () => alterar(i, -1);
+
+            const numero = document.createElement("span");
+            numero.textContent = item.quantidade;
+
+            const mais = document.createElement("button");
+            mais.textContent = "+";
+            mais.onclick = () => alterar(i, 1);
+
+            const remover = document.createElement("button");
+            remover.textContent = "Excluir";
+            remover.onclick = () => {
+                carrinho.splice(i, 1);
+                salvar();
+            };
+
+            controles.append(menos, numero, mais, remover);
+            linha.append(nome, preco, controles);
+            lista.appendChild(linha);
+        });
+
+        document.getElementById("quantidade").textContent = quantidade;
+
+        document.getElementById("valor").textContent =
+            total.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+
+        document.getElementById("finalizar").disabled =
+            carrinho.length === 0;
+    }
+
+    function alterar(i, valor) {
+        carrinho[i].quantidade += valor;
+
+        if (carrinho[i].quantidade <= 0) {
+            carrinho.splice(i, 1);
+        }
+
+        salvar();
+    }
+
+    function limparCarrinho() {
+        carrinho = [];
+        salvar();
+    }
+
+    function irPagamento() {
+        if (carrinho.length === 0) {
+            alert("Adicione algum produto primeiro!");
+            return;
+        }
+
+        window.location.href = "pagamento.html";
+    }
+
+    document.getElementById("imagemFundo").addEventListener("change", function() {
+        const arquivo = this.files[0];
+
+        if (arquivo && arquivo.type.startsWith("image/")) {
+            const leitor = new FileReader();
+
+            leitor.onload = function(e) {
+                document.querySelector(".celular").style.backgroundImage =
+                    "linear-gradient(rgba(5, 5, 35, 0.25), rgba(5, 5, 35, 0.45)), url('" +
+                    e.target.result + "')";
+            };
+
+            leitor.readAsDataURL(arquivo);
+        }
+    });
+
+    mostrarCarrinho();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Orbitron:wght@500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #08051c;
+    color: white;
+    font-family: 'Oswald', Arial, sans-serif;
+    padding: 25px 10px;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at top, #24105b, #050516 70%);
+}
+.fantasma{
+    
+   
+
+    height: 300px;
+   
+}
+.celular {
+    width: 100%;
+    max-width: 390px;
+    min-height: 750px;
+    margin: auto;
+    padding: 15px 12px;
+    background-color: #090827;
+    background-image:
+        linear-gradient(rgba(5, 5, 35, 0.25), rgba(5, 5, 35, 0.45)),
+        url("./img/fundo.png");
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    border: 1px solid #713cff;
+    box-shadow: 0 0 30px #5425ff55;
+    overflow: hidden;
+}
+
+/* BOTÃO VOLTAR */
+
+.voltar {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 8px 12px;
+    color: white;
+    background: rgba(13, 24, 105, 0.9);
+    border: 1px solid #00d9ff;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.voltar:hover {
+    background: #00bde8;
+    color: #08051c;
+    box-shadow: 0 0 12px #00d9ff99;
+}
+
+/* CABEÇALHO */
+
+header {
+    text-align: center;
+    padding: 18px 8px 22px;
+    background: rgba(5, 10, 70, 0.75);
+    border: 1px solid #4c4cff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #4827ff55;
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    color: #b08cff;
+    text-shadow: 0 0 12px #8a36ff;
+}
+
+header h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
+header p {
+    color: #00eaff;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-top: 5px;
+}
+
+/* TÍTULO */
+
+.topo {
+    margin: 20px 0 12px;
+    padding: 20px 8px;
+    text-align: center;
+    background: linear-gradient(135deg, #160b68, #071b83, #4911a2);
+    border: 1px solid #704bff;
+    border-radius: 12px;
+    box-shadow: 0 0 16px #541dff66;
+}
+
+.topo h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    color: #00eaff;
+    text-shadow: 0 0 10px #008cff;
+}
+
+.topo p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 7px;
+    color: #d7d9ff;
+}
+
+/* ESCOLHER FUNDO */
+
+.fundo-opcao {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.fundo-opcao label {
+    display: inline-block;
+    padding: 9px 14px;
+    font-size: 12px;
+    background: #171078;
+    border: 1px solid #00d9ff;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.fundo-opcao label:hover {
+    background: #3920a8;
+    box-shadow: 0 0 12px #00d9ff88;
+}
+
+.fundo-opcao input {
+    display: none;
+}
+
+/* LISTA DE ACESSÓRIOS */
+
+main {
+    background: #07328d;
+    padding: 10px 9px 20px;
+    border: 1px solid #245eff;
+    box-shadow: 0 0 15px #006aff33;
+}
+
+main > h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.produto {
+    padding: 13px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px 8px;
+    border-bottom: 1px solid #050b34;
+}
+
+.produto h4 {
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+.produto p {
+    font-size: 12px;
+    line-height: 1.4;
+    color: #e2eaff;
+    margin-top: 2px;
+}
+
+.produto strong {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.produto button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 6px;
+    padding: 7px 10px;
+    background: #100a5d;
+    border: 1px solid #00cfff;
+    border-radius: 4px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.produto button:hover {
+    background: #5423be;
+    box-shadow: 0 0 8px #00d9ff77;
+}
+
+/* CARRINHO */
+
+.carrinho {
+    margin-top: 25px;
+    padding: 13px 10px;
+    background: #061d69;
+    border: 1px solid #00d9ff;
+    border-radius: 8px;
+}
+
+.carrinho h3 {
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: #00eaff;
+}
+
+#vazio {
+    font-size: 13px;
+    color: #d8e5ff;
+    padding-bottom: 10px;
+}
+
+.item {
+    padding: 10px 0;
+    border-bottom: 1px solid #3c58b7;
+}
+
+.item p {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.item strong {
+    font-size: 13px;
+    color: #00eaff;
+}
+
+.controles {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.controles button {
+    padding: 4px 8px;
+    color: white;
+    background: #160c65;
+    border: 1px solid #8e6aff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.controles span {
+    font-size: 13px;
+}
+
+.total {
+    padding-top: 15px;
+}
+
+.total p {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.total h3 {
+    font-size: 19px;
+}
+
+.finalizar,
+.limpar {
+    width: 100%;
+    margin-top: 10px;
+    padding: 11px 6px;
+    color: white;
+    background: linear-gradient(90deg, #7a20d9, #075ed7);
+    border: 1px solid #00d9ff;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.finalizar:hover,
+.limpar:hover {
+    box-shadow: 0 0 12px #00d9ff88;
+}
+
+.finalizar:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.limpar {
+    background: #11104a;
+    border-color: #9a65ff;
+}
+
+/* RODAPÉ */
+
+footer {
+    margin-top: 12px;
+    padding: 15px 5px;
+    text-align: center;
+    color: #00d9ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    background: rgba(5, 7, 40, 0.9);
+    border: 1px solid #3928a7;
+}
+
+/* CELULAR */
+
+@media (max-width: 420px) {
+    body {
+        padding: 0;
+    }
+
+    .celular {
+        max-width: 100%;
+        min-height: 100vh;
+        border: none;
+        box-shadow: none;
+    }
+}
